@@ -1,35 +1,64 @@
 import React from "react";
 import {  BrowserRouter as Router,  Switch,  Route,  Link } from "react-router-dom";
 
-// Some folks find value in a centralized route config.
-// A route config is just data. React is great at mapping
-// data into components, and <Route> is a component.
+import Layout from './components/layout/layout';
+import Navigation from './components/navigation/navigation';
+import Surface from './components/surfaces/surface';
+import Feedback from './components/feedback/Feedback';
+import Datadisplay from './components/datadisplay/datadisplay';
+import Utils from './components/utils/Utils';
+import Labs from './components/lab/Lab';
 
-// Our route config is just an array of logical "routes"
-// with `path` and `component` props, ordered the same
-// way you'd do inside a `<Switch>`.
 const routes = [
   {
-    path: "/sandwiches",
-    component: Sandwiches
+    path: "/layout",
+    component: Layout
   },
   {
-    path: "/tacos",
-    component: Tacos,
+    path: "/input",
+    component: inputs,
     routes: [
       {
-        path: "/tacos/bus",
+        path: "/input/bus",
         component: Bus
       },
       {
-        path: "/tacos/cart",
+        path: "/input/cart",
         component: Cart
       }
     ]
+  }, 
+  {
+    path: "/input/cart",
+    component: Cart
   },
   {
-    path: "/tacos/cart",
+    path: "/input/cart",
     component: Cart
+  },
+  {
+    path: "/navigation",
+    component: Navigation
+  },
+  {
+    path: "/surface",
+    component: Surface
+  },
+  {
+    path: "/feedback",
+    component: Feedback
+  },
+  {
+    path: "/datadisplay",
+    component: Datadisplay
+  },
+  {
+    path: "/utils",
+    component: Utils
+  },
+  {
+    path: "/labs",
+    component: Labs
   },
 ];
 
@@ -39,17 +68,35 @@ export default function RouteConfigExample() {
       <div>
         <ul>
         <li>
-            <Link to="/sandwiches">1.Sandwiches</Link>
+            <Link to="/layout">1.Layout</Link>
           </li>
 
           <li>
-            <Link to="/tacos">2.Tacos</Link>
+            <Link to="/input">2.inputs</Link>
           </li>
           <li>
-            <Link to="/tacos/bus">2.1.tacos -> bus</Link>
+            <Link to="/input/bus">2.1.inputs -> bus</Link>
           </li>
           <li>
-            <Link to="/tacos/cart">2.2.tacos -> cart</Link>
+            <Link to="/input/cart">2.2.inputs -> cart</Link>
+          </li>
+          <li>
+            <Link to="/navigation">3.Navigation</Link>
+          </li>
+          <li>
+            <Link to="/surface">3.Surface</Link>
+          </li>
+          <li>
+            <Link to="/feedback">4.Feeback</Link>
+          </li>
+          <li>
+            <Link to="/datadisplay">5.Data dispay</Link>
+          </li>
+          <li>
+            <Link to="/utils">6.Utils</Link>
+          </li>
+          <li>
+            <Link to="/labs">7.Labs</Link>
           </li>
         </ul>
 
@@ -63,9 +110,7 @@ export default function RouteConfigExample() {
   );
 }
 
-// A special wrapper for <Route> that knows how to
-// handle "sub"-routes by passing them in a `routes`
-// prop to the component it renders.
+
 function RouteWithSubRoutes(route) {
   return (
     <Route
@@ -82,16 +127,16 @@ function Sandwiches() {
   return <h2>Sandwiches</h2>;
 }
 
-function Tacos({ routes }) {
+function inputs({ routes }) {
   return (
     <div>
-      <h2>Tacos</h2>
+      <h2>inputs</h2>
       <ul>
         <li>
-          <Link to="/tacos/bus">Bus</Link>
+          <Link to="/input/bus">Bus</Link>
         </li>
         <li>
-          <Link to="/tacos/cart">Cart</Link>
+          <Link to="/input/cart">Cart</Link>
         </li>
       </ul>
 
