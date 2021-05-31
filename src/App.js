@@ -1,11 +1,22 @@
-import React from 'react'
+import "./style.css";
 
-function App() {
+export default function App() {
   return (
-    <div>
-      React Guide Main Branch with Plain project
+    <div className="App">
+      <form>
+        <div className="form-control">
+          <label>Email</label>
+          <input type="text" name="email" />
+        </div>
+        <div className="form-control">
+          <label>Password</label>
+          <input type="password" name="password" />
+        </div>
+        <div className="form-control">
+          <label></label>
+          <button type="submit">Login</button>
+        </div>
+      </form>
     </div>
-  )
+  );
 }
-
-export default App
