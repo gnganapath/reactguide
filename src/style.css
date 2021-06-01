@@ -17,20 +17,23 @@ body {
   
   .form-control {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     margin-bottom: 10px;
   }
   
   .form-control label {
-    width: 20%;
+    width: 40%;
     padding-right: 20px;
     margin-bottom: 5px;
+    float:left;
   }
   
   .form-control input[type='text'],
-  .form-control input[type='password'] {
-    width: 40%;
+  .form-control input[type='password']
+  .form-control input[type='checkbox'] {
+    width: 50%;
     padding: 5px;
+    float:left;
   }
   
   button {
@@ -52,7 +55,8 @@ body {
     }
   
     .form-control input[type='text'],
-    .form-control input[type='password'] {
+    .form-control input[type='password'] 
+    .form-control input[type='checkob'] {
       width: inherit;
     }
   }
