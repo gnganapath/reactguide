@@ -1,118 +1,56 @@
-import React ,{useState} from 'react';
+import React from 'react';
+import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
+
+import UncontrolledComponentForm from './form-components/uncontrolledForm';
+import ReactHookForm from './form-components/react-hook-form-component';
+import FormikComponent from './form-components/formik-component';
+import Header from './layout-components/Header';
+import NavBar from './layout-components/NavBar';
+
+import UseStateHook from './react-hooks/useState';
+import UseEffectHook from './react-hooks/useEffectHook';
+import UseContextHookComponent from './react-hooks/useContextHook';
+
 import "./style.css";
 
 export default function App() {
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobileNumber, setMobileNumber ] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatpassword, setRepeatpassword] = useState("");
-  const [dob, setDob] = useState();
-  const [gender, setGender] = useState("");
-
-  const [ skillset, setSkillset ] = useState(
-    {
-      uiSkills: false,      
-      apiService: false,
-      devOps: false,
-      uiSkillDetails:[],
-    }
-  )
-
-  const[frontEnds, setFrontEnds] = useState(["React", "Angular"]);
-
-  const handleChange = (e) =>{
-    // the default radio button value gets default then later entry (i.e) radio button will give any string as value , 
-    console.log(`${email}`, `${password}`,`${gender}`)
-  }
-
-  const onGenderChangeValue = (e) =>{
-    setGender(e.target.value)
-    console.log(e.target.value)
-  }
-
-  const simpleFormSubmit = (e) =>{
-      e.preventDefault();
-      console.log(`Full name -> ${firstName} ${lastName}`, `username -> ${username}`,`mobileNumber -> ${mobileNumber}`,`Email -> ${email}`, `Password -> ${password}`,`Gender -> ${gender}`,
-      `dob -> ${dob}`, `gender -> ${gender}`, 'Skillset->', skillset );
-  }
-  return (
-    <div className="App">
-      <div> <h3>React Form Example</h3></div>
-      <form onSubmit={simpleFormSubmit} onChange={handleChange}>
-        <div className="form-control">
-          <label>First Name</label>
-          <input type="text" name="firstName"  onChange={e=>setFirstName(e.target.value)} />  
+ return(
+   
+     <div>
+          <Header/>
+          {/*<NavBar />*/}
+         
+     <Router>
+           <div className="App">
+            <ul className="App-header">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/uncontrol">Uncontrolled component </Link>
+              </li>
+              <li>
+                <Link to="/reactHookForm">React Hook form - npm </Link>
+              </li>
+              <li>
+                <Link to="/formik">Formik Components - npm </Link>
+              </li>
+            </ul>
+           <Routes>
+                 <Route exact path='/'></Route>
+                 <Route exact path='/uncontrol' element={< UncontrolledComponentForm />}></Route>
+                 <Route exact path='/reactHookForm' element={< ReactHookForm />}></Route>
+                 <Route exact path='/formik' element={< ReactHookForm />}></Route>
+          </Routes>
           </div>
-        <div className="form-control">
-          <label>Last Name</label>
-          <input type="text" name="lastName"  onChange={e=>setLastName(e.target.value)} /> 
-        </div>
-        <div className="form-control">
-          <label>Username</label>
-          <input type="text" name="username"  onChange={e=>setUsername(e.target.value)} />   
-        </div>
-        <div className="form-control">
-          <label>Mobile Number -  input type -Number</label>
-          <input type="number" name="mobileNumber"  onChange={e=>setMobileNumber(e.target.value)} />   
-        </div>
-        <div className="form-control">
-          <label>Email -  input type -email</label>
-          <input type="email" name="email"  onChange={e=>setEmail(e.target.value)} />   
-        </div>
-        <div className="form-control">
-          <label>Password</label>
-          <input type="password" name="password" onChange={e=>setPassword(e.target.value)} />
-        </div>
-        <div className="form-control">
-          <label>Re-type Password -  input type -password</label>
-          <input type="password" name="repeatpassword" onChange={e=>setRepeatpassword(e.target.value)} />
-        </div>
-
-        <div className="form-control">
-          <label>Date of Birth -  input type -Date</label>
-          <input type="date" name="dob" onChange={e=>setDob(e.target.value)} />
-        </div>        
-        <div className="form-control" >
-          <label>Gender - Radio group button</label>
-          <div>
-            <input type="radio" value="Male" name="gender" checked={gender === "Male"} onChange={onGenderChangeValue}/> Male
-            <input type="radio" value="Female" name="gender" checked={gender === "Female"} onChange={onGenderChangeValue}/> Female
-            <input type="radio" value="Other" name="gender" checked={gender === "Other"} onChange={onGenderChangeValue}/> Other
-          </div>
-        </div>
-        <div className="form-control" >
-          <label>Skill Set - Checkbox</label>          
-            
-            <div>
-            <label>
-              <input
-                name="acceptedTerms"
-                type="checkbox"
-                onChange={e => setSkillset({uiskills: e.target.value})}
-                required />UI/Front End:
-              
-            <select
-              name="uiSkills"             
-              onChange={e => setSkillset( {uiSkillDetails: e.target.value})}
-              required multiple>
-              <option key=""></option>
-              {frontEnds.map(uiFrontend => (
-                <option key={uiFrontend}>{uiFrontend}</option>
-              ))}
-            </select>
-          </label>
-          </div>
-        </div>
-
-        <div className="form-control">
-          <label></label>
-          <button type="submit">Sign up</button>
-        </div>
-      </form>
+       </Router>
+        <UseStateHook />
+        <hr />
+        <UseEffectHook />
+        <hr />
+        {/*<UseContextHookComponent />*/}
     </div>
-  );
+  
+ )
 }
